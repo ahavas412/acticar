@@ -53,7 +53,7 @@ class Car
 
     public function setState(string $state): self
     {
-        if (in_array($state, $this->getStates())) {
+        if (in_array($state, self::getAllStates())) {
             $this->state = $state;
 
             return $this;
@@ -74,12 +74,12 @@ class Car
         return $this;
     }
 
-    public function getStates()
+    public static function getAllStates(): array
     {
         return [
-            self::NEW,
-            self::USED,
-            self::BROKEN,
+            'Neuve' => self::NEW,
+            'Occasion' => self::USED,
+            'Cassé' => self::BROKEN,
         ];
     }
 }

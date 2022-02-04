@@ -1,6 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container-fluid m-5">
+        <div class="card col-md-3 mx-auto">
+            <div class="card-header">
+                Voiture #{{ car.id }}
+            </div>
+            <div class="card-body">
+                <div class="form-control">
+                    <div class="mb-3">
+                        Nom : {{ car.name }}
+                    </div>
+                    <div class="mb-3">
+                        Etat : {{ car.state | trans }}
+                    </div>
+                    <div class="mb-3">
+                        Immatriculation : {{ car.licensePlate }}
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-info"><a class="link" target="_blank" href="{{ carLink }}">Voir les pièces disponibles</a></button>
+                        <button class="btn btn-success"><a class="link" href="{{ path('edit_car', {id: car.id}) }}">Editer</a></button>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </div>
 {% endblock %}
 

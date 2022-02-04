@@ -1,0 +1,15 @@
+.pos-custom {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    min-width: 250px;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: white;
+}

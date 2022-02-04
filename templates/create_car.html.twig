@@ -1,5 +1,30 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    t
+    <div class="container-fluid m-5">
+        <div class="card col-md-3 mx-auto">
+            <div class="card-header">
+                Ajouter une voiture
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="form-control">
+                    <div class="mb-3">
+                        {{ form_row(form.name) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.state) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.licensePlate) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.submit, {label: 'Envoyer', attr: {class: 'btn btn-success'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
