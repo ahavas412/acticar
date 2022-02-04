@@ -6,6 +6,7 @@ use App\Client\PiecesAutoClient;
 use App\Entity\Car;
 use App\Repository\CarRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -65,5 +66,40 @@ class CarController extends AbstractController
             'car' => $car,
             'carLink' => $carLink,
         ]);
+    }
+
+    #[Route("/api/states", name: "api_view_states", methods: ['GET'])]
+    public function viewStates(Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            $this->redirectToRoute('index');
+        }
+
+        $states = Car::getAllStates();
+        $formattedStates = [];
+
+        $i = 0;
+        foreach ($states as $label => $state) {
+            $formattedStates[$i] = [
+                'label' => $label,
+                'value' => $state,
+            ];
+            $i++;
+        }
+
+        return new JsonResponse($formattedStates);
+    }
+
+    #[Route("api/{id}/editState", name: "api_edit_state", methods: ['GET'])]
+    public function editState(Car $car, Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            $this->redirectToRoute('index');
+        }
+
+        $car->setState($request->get('state'));
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse('');
     }
 }
